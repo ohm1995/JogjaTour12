@@ -16,10 +16,6 @@ public class UtilityReceiver extends WakefulBroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // Pass right over to UtilityService class, the wakeful receiver is
-        // just needed in case the geofence is triggered while the device
-        // is asleep otherwise the service may not have time to trigger the
-        // notification.
         intent.setClass(context, UtilityService.class);
         intent.setAction(UtilityService.ACTION_GEOFENCE_TRIGGERED);
         startWakefulService(context, intent);

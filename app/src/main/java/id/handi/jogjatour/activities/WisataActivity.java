@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -91,12 +90,5 @@ implements ActivityCompat.OnRequestPermissionsResultCallback {
     }
 
 
-    private void showDebugDialog(int titleResId, int bodyResId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(titleResId)
-                .setMessage(bodyResId)
-                .setPositiveButton(android.R.string.ok, null);
-        builder.create().show();
-    }
 
 }

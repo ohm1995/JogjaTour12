@@ -334,12 +334,11 @@ public class UtilityService extends IntentService {
                 DetailActivity.getLaunchIntent(this, attraction.name),
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // The intent to trigger when the notification is dismissed, in this case
-        // we want to clear remote notifications as well
+
         PendingIntent deletePendingIntent =
                 PendingIntent.getService(this, 0, getClearRemoteNotificationsIntent(this), 0);
 
-        // Construct the main notification
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(bitmaps.get(attraction.name))
@@ -357,16 +356,13 @@ public class UtilityService extends IntentService {
                 .setAutoCancel(true);
 
         if (!microApp) {
-            // If not a micro app, create some wearable pages for
-            // the other nearby tourist attractions.
+
             ArrayList<Notification> pages = new ArrayList<Notification>();
             for (int i = 1; i < count; i++) {
 
-                // Calculate the distance from current location to tourist attraction
                 String distance = Utils.formatDistanceBetween(
                         Utils.getLocation(this), attractions.get(i).location);
 
-                // Construct the notification and add it as a page
                 pages.add(new NotificationCompat.Builder(this)
                         .setContentTitle(attractions.get(i).name)
                         .setContentText(distance)
@@ -390,12 +386,10 @@ public class UtilityService extends IntentService {
                 .addApi(Wearable.API)
                 .build();
 
-        // It's OK to use blockingConnect() here as we are running in an
-        // IntentService that executes work on a separate (background) thread.
         ConnectionResult connectionResult = googleApiClient.blockingConnect(
                 konstantaGmaps.GOOGLE_API_CLIENT_TIMEOUT_S, TimeUnit.SECONDS);
 
-        // Limit attractions to send
+
         int count = attractions.size() > konstantaGmaps.MAX_ATTRACTIONS ?
                 konstantaGmaps.MAX_ATTRACTIONS : attractions.size();
 
@@ -408,7 +402,7 @@ public class UtilityService extends IntentService {
             Bitmap secondaryImage = null;
 
             try {
-                // Fetch and resize attraction image bitmap
+
                 image = Glide.with(this)
                         .load(attraction.imageUrl)
                         .asBitmap()

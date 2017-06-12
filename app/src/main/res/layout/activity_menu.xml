@@ -15,7 +15,7 @@
         <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="#51d8c7"
+            android:background="#AA0000"
             android:gravity="center"
             android:orientation="vertical">
 
